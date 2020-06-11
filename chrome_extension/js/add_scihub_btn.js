@@ -6,7 +6,7 @@ function checkDOI(selections) {
     if (isDoi) {
         doi = selectStrings.match(pattens);
     }
-    return doi[0]
+    return doi[0];
 }
 
 var $sinaMiniBlogShare = function (eleShare, eleContainer) {
@@ -19,7 +19,7 @@ var $sinaMiniBlogShare = function (eleShare, eleContainer) {
         } else {
             txt = document.getSelection();
         }
-        return checkDOI(txt).toString();
+        return checkDOI(txt);
     };
     eleContainer.onmouseup = function (e) {
         e = e || window.event;
