@@ -7,8 +7,9 @@
         "tabs"
     ],
     "icons": {
-        "16": "images/favicon-16x16.png",
-        "48": "images/android-icon-48x48.png"
+        "16": "images/16x16.png",
+        "48": "images/48x48.png",
+        "128": "images/128x128.png"
     },
     "content_scripts": [
         {
