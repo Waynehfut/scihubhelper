@@ -1,22 +1,22 @@
 {
-  "name": "electron-quick-start",
+  "name": "SCIHelperdesktop",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Help you find the accessible paper",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron . --enable-logging"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Waynehfut/scihubhelper",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "SCIHub"
   ],
-  "author": "GitHub",
+  "author": "waynehfut",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.0.3"
+  },
+  "dependencies": {
+    "about-window": "^1.13.4"
   }
 }

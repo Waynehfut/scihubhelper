@@ -1,10 +1,116 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const { app, Menu, BrowserWindow } = require('electron')
+const openAboutWindow = require('about-window').default;
 const path = require('path')
+const join = require('path').join;
+let template = [{
+  label: '编辑',
+  submenu: [{
+    label: '撤销',
+    accelerator: 'CmdOrCtrl+Z',
+    role: 'undo'
+  }, {
+    label: '重做',
+    accelerator: 'Shift+CmdOrCtrl+Z',
+    role: 'redo'
+  }, {
+    type: 'separator'
+  }, {
+    label: '剪切',
+    accelerator: 'CmdOrCtrl+X',
+    role: 'cut'
+  }, {
+    label: '复制',
+    accelerator: 'CmdOrCtrl+C',
+    role: 'copy'
+  }, {
+    label: '粘贴',
+    accelerator: 'CmdOrCtrl+V',
+    role: 'paste'
+  }, {
+    label: '全选',
+    accelerator: 'CmdOrCtrl+A',
+    role: 'selectall'
+  }, {
+    label: '设置',
+    accelerator: 'f2',
+    click: function (item, focusedWindow) {
+      console.log('todo')
+    }
+  }]
+}, {
+  label: '关于',
+  submenu: [{
+    label: '重载',
+    accelerator: 'CmdOrCtrl+R',
+    click: function (item, focusedWindow) {
+      if (focusedWindow) {
+        // 重载之后, 刷新并关闭所有的次要窗体
+        if (focusedWindow.id === 1) {
+          BrowserWindow.getAllWindows().forEach(function (win) {
+            if (win.id > 1) {
+              win.close()
+            }
+          })
+        }
+        focusedWindow.reload()
+      }
+    }
+  }, {
+    label: '切换全屏',
+    accelerator: (function () {
+      if (process.platform === 'darwin') {
+        return 'Ctrl+Command+F'
+      } else {
+        return 'F11'
+      }
+    })(),
+    click: function (item, focusedWindow) {
+      if (focusedWindow) {
+        focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
+      }
+    }
+  }, {
+    label: '切换开发者工具',
+    accelerator: (function () {
+      if (process.platform === 'darwin') {
+        return 'Alt+Command+I'
+      } else {
+        return 'Ctrl+Shift+I'
+      }
+    })(),
+    click: function (item, focusedWindow) {
+      if (focusedWindow) {
+        focusedWindow.toggleDevTools()
+      }
+    }
+  }, {
+    label: '关于',
+    accelerator: (function () {
+      if (process.platform === 'darwin') {
+        return 'f1'
+      } else {
+        return 'f1'
+      }
+    })(),
+    click: function (item, focusedWindow) {
+      if (focusedWindow) {
+        openAboutWindow({
+          icon_path: join(__dirname, '/images/512x512.png'),
+          product_name: 'SCI Helper',
+          copyright: '(C) Waynehfut.com',
+          homepage: 'https://blog.waynehfut.com/2020/06/11/scihelper/',
+          description: 'Help you find the accessible paper'
+        });
+      }
+    }
+  }]
+}]
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    icon: __dirname + '/images/24x24.png',
     width: 800,
     height: 600,
     webPreferences: {
@@ -13,7 +119,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile(__dirname+'/html/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -24,7 +130,8 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
-  
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
