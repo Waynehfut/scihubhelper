@@ -11,6 +11,7 @@
         "48": "images/48x48.png",
         "128": "images/128x128.png"
     },
+    "homepage_url": "https://blog.waynehfut.com/2020/06/11/scihelper/",
     "content_scripts": [
         {
             "matches": [
