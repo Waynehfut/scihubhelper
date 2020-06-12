@@ -1,8 +1,19 @@
 // Modules to control application life and create native browser window
-const { app, Menu, BrowserWindow } = require('electron')
-const openAboutWindow = require('about-window').default;
+const { app, Menu, BrowserWindow, ipcMain } = require('electron')
+
+
 const path = require('path')
 const join = require('path').join;
+
+const openAboutWindow = require('about-window').default;
+const { download } = require('electron-dl');
+
+ipcMain.on('download_request', function (event, arg) {
+  const win = BrowserWindow.getFocusedWindow();
+  console.log('arg:', arg);
+  download(win, arg[0], { directory: arg[1] });
+});
+
 let template = [{
   label: '编辑',
   submenu: [{
@@ -114,12 +125,14 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true, //enable require
+      // webSecurity: false
+      //   preload: path.join(__dirname, '/js/preload.js')
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile(__dirname+'/html/index.html')
+  mainWindow.loadFile(__dirname + '/html/index.html')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

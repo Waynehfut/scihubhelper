@@ -3,19 +3,28 @@
 
 <head>
   <meta charset="UTF-8">
+  <style></style>
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
   <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <script src="../js/preload.js"></script>
+
   <title>SCI Helper</title>
 </head>
 
 <body>
   <h1>SCI Helper here</h1>
-  <input type="text" id="id_input_string"></input>
-  <button type="submit">Get paper</button>
+
+  <div id="preferences">
+    <input type="text" id="id_save_path" value="C:\Users\HAO\Desktop">
+    <input type="text" id="id_sever_path" value="https://sci-hub.tw/">
+  </div>
+  <div id="id_search_div">
+    <input type="text" id="id_input_text" value="10.1016/j.arabjc.2017.05.011"></input>
+    <button type="submit" disabled="disabled" id="id_search_btn">Get paper</button>
+  </div>
 
   <!-- You can also require other files to run in this process -->
+  <script src="../js/controller.js"></script>
 </body>
 
 </html>

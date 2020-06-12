@@ -17,6 +17,7 @@
     "electron": "^9.0.3"
   },
   "dependencies": {
-    "about-window": "^1.13.4"
+    "about-window": "^1.13.4",
+    "electron-dl": "^3.0.0"
   }
 }
