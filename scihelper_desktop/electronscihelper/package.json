@@ -1,23 +1,93 @@
 {
-  "name": "SCIHelperdesktop",
+  "name": "sci-helper-desktop",
   "version": "1.0.0",
   "description": "Help you find the accessible paper",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron . --enable-logging"
-  },
+  "author": "waynehfut <waynehfut@outlook.com>",
   "repository": "https://github.com/Waynehfut/scihubhelper",
   "keywords": [
     "Electron",
     "SCIHub"
   ],
-  "author": "waynehfut",
-  "license": "CC0-1.0",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --enable-logging",
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
   "devDependencies": {
-    "electron": "^9.0.3"
+    "electron": "^9.0.3",
+    "electron-builder": "^22.7.0"
   },
   "dependencies": {
     "about-window": "^1.13.4",
     "electron-dl": "^3.0.0"
+  },
+  "build": {
+    "productName": "SCIhelper",
+    "appId": "com.waynehfut.scihelper",
+    "copyright": "(c)waynehfut.com",
+    "directories": {
+      "output": "build"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./build/icons/512x512.ico",
+      "uninstallerIcon": "./build/icons/512x512.ico",
+      "installerHeaderIcon": "./build/icons/512x512.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SCI Helper"
+    },
+    "files": [
+      "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/512x512.icns"
+    },
+    "win": {
+      "icon": "build/icons/512x512.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
   }
 }
