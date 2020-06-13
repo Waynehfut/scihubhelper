@@ -10,7 +10,6 @@ const { download } = require('electron-dl');
 
 ipcMain.on('download_request', function (event, arg) {
   const win = BrowserWindow.getFocusedWindow();
-  console.log('arg:', arg);
   download(win, arg[0], { directory: arg[1] });
 });
 
@@ -123,9 +122,10 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     icon: __dirname + '/images/24x24.png',
     width: 800,
-    height: 300,
+    height: 480,
     webPreferences: {
       nodeIntegration: true, //enable require
+      enableRemoteModule: true
       // webSecurity: false
       //   preload: path.join(__dirname, '/js/preload.js')
     }
