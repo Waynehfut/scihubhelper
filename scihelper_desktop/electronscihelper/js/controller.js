@@ -41,8 +41,10 @@ window.onload = function () {
         doiStr = checkDOI(searchText.value);
         if (doiStr) {
             searchBtn.disabled = false;
+            searchBtn.className = "btn btn-positive";
         } else {
             searchBtn.disabled = true;
+            searchBtn.className = "btn btn-default";
         }
     })
     searchBtn.addEventListener('click', function () {

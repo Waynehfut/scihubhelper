@@ -3,26 +3,37 @@
 
 <head>
   <meta charset="UTF-8">
-  <style></style>
+  <link rel="stylesheet" href="../css/photon.min.css">
+  <link rel="stylesheet" href="../css/format.css">
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
   <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
 
   <title>SCI Helper</title>
 </head>
 
 <body>
-  <h1>SCI Helper here</h1>
-
-  <div id="preferences">
-    <input type="text" id="id_save_path" value="C:\Users\HAO\Desktop">
-    <input type="text" id="id_sever_path" value="https://sci-hub.tw/">
+  <h3>SCI Helper</h3>
+  <div>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <label class="label_text">Save path</label>
+        <input type="text" id="id_save_path" value="C:\Users\HAO\Desktop" class="input_box">
+        <button class="btn btn-default"><span class="icon icon-folder"></span></button>
+      </li>
+      <li class="list-group-item">
+        <label class="label_text">Server path</label>
+        <input type="text" id="id_sever_path" value="https://sci-hub.tw/" class="input_box">
+        <button class="btn btn-default"><span class="icon icon-cloud"></span></button>
+      </li>
+      <li class="list-group-item">
+        <label class="label_text">Doi</label>
+        <input type="text" id="id_input_text" value="10.1016/j.arabjc.2017.05.011" class="input_box"></input>
+        <button type="submit" class="btn btn-default" disabled="disabled" id="id_search_btn">Get paper</button>
+      </li>
+    </ul>
   </div>
-  <div id="id_search_div">
-    <input type="text" id="id_input_text" value="10.1016/j.arabjc.2017.05.011"></input>
-    <button type="submit" disabled="disabled" id="id_search_btn">Get paper</button>
-  </div>
-
   <!-- You can also require other files to run in this process -->
   <script src="../js/controller.js"></script>
 </body>

@@ -123,7 +123,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     icon: __dirname + '/images/24x24.png',
     width: 800,
-    height: 600,
+    height: 300,
     webPreferences: {
       nodeIntegration: true, //enable require
       // webSecurity: false

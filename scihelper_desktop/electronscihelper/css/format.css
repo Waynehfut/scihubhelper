@@ -1,1 +1,6 @@
-.img_find_btn{display:none; position:absolute; cursor:pointer;width: 30px;height: 30px;}
+.label_text{
+    width: 100px;
+}
+.input_box{
+    width: 400px;
+}
