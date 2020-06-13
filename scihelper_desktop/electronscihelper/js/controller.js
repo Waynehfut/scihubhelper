@@ -40,7 +40,8 @@ function getPdfUrl(postUrl) {
 
 function savePdf(pdfUrl) {
   var savedPathStr = document.getElementById("id_save_path").value;
-  ipcRenderer.send("download_request", [pdfUrl, savedPathStr]); //Send to main.js
+  var info = { url: pdfUrl, properties: { directory: savedPathStr } };
+  ipcRenderer.send("download_request", info); //Send to main.js
 }
 
 window.onload = function () {
@@ -49,7 +50,7 @@ window.onload = function () {
   var fileBtn = document.getElementById("id_folder_btn");
   var filePath = this.document.getElementById("id_save_path");
   var serverBtn = document.getElementById("id_serve_btn");
-
+  var processBar = this.document.getElementById("id_process_bar");
   var doiStr = "";
   filePath.value = app.getPath("desktop");
   //input doi
@@ -90,5 +91,33 @@ window.onload = function () {
   //get scihub url
   serverBtn.addEventListener("click", function () {
     console.log("serveclick");
+    var se = document.getElementById("id_sever_path");
+    se.value = "https://sci-hub.tw/";
+  });
+  //handle download
+  ipcRenderer.on("download_start", (event) => {
+    console.log("download start");
+    searchBtn.disabled = true;
+    searchBtn.className = "btn btn-secondary";
+  });
+
+  ipcRenderer.on("download_progress", (event, process) => {
+    const percent = process.percent;
+    const transferredBytes = process.transferredBytes;
+    const totalBytes = process.totalBytes;
+    const valuenow = Math.floor(percent * 100);
+    console.log(valuenow);
+    processBar.innerHTML = valuenow + "%";
+    processBar.style = "width: " + valuenow + "%";
+    processBar.className =
+      "progress-bar progress-bar-striped progress-bar-animated";
+  });
+
+  ipcRenderer.on("download_complete", (event, file) => {
+    console.log("downloaded!");
+    searchBtn.disabled = false;
+    searchBtn.className = "btn btn-success";
+    processBar.className = "progress-bar bg-success";
+    processBar.innerHTML = "Saved in " + file;
   });
 };
