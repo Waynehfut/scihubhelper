@@ -12,8 +12,6 @@
   "main": "main.js",
   "scripts": {
     "start": "electron . --enable-logging",
-    "dev": "electron-webpack dev",
-    "compile": "electron-webpack",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
