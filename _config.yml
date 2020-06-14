@@ -1,1 +1,4 @@
 theme: jekyll-theme-architect
+title: [SCI Helper]
+description: [Help you find the accessible paper with the DOI.]
+show_downloads: [true]
