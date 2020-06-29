@@ -43,6 +43,7 @@ var $sinaMiniBlogShare = function (eleShare, eleContainer) {
 
 let div = document.createElement('button');
 div.id = 'content';
+div.className='img_find_div';
 div.innerHTML = '<img id="scihubBtm" class="img_find_btn" title="Find On Scihub" src="https://raw.githubusercontent.com/Waynehfut/blog/master/source/assets/img/mysite.jpg"/>';
 document.body.appendChild(div);
-var eleImgShare = $sinaMiniBlogShare(document.getElementById("scihubBtm"));
+var eleImgShare = $sinaMiniBlogShare(document.getElementById("content"));

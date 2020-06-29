@@ -15,6 +15,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_btnFetchPaper_clicked();
+
+    void on_btnSetServer_clicked();
+
+    void on_btnSetPath_clicked();
+
+    void on_actionAbout_triggered();
+
+    void on_actionReload_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
