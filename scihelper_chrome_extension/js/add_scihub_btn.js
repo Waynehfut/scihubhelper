@@ -36,7 +36,7 @@ var $sinaMiniBlogShare = function (eleShare, eleContainer) {
     eleShare.onclick = function () {
         var txt = funGetSelectTxt();
         if (txt) {
-            window.open('http://sci-hub.tw/' + txt);
+            window.open('http://sci-hub.se/' + txt);
         }
     };
 };
